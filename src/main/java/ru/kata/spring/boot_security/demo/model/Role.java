@@ -27,22 +27,6 @@ public class Role implements GrantedAuthority {
         return value;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -62,5 +46,21 @@ public class Role implements GrantedAuthority {
                "id=" + id +
                ", value='" + value + '\'' +
                '}';
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 }
