@@ -8,7 +8,6 @@ import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 import javax.annotation.PostConstruct;
-import java.time.LocalDate;
 
 @Component
 public class InitDB {
@@ -28,15 +27,15 @@ public class InitDB {
         Role roleAdmin = new Role("ROLE_ADMIN");
         Role roleUser = new Role("ROLE_USER");
 
-        User admin = new User("qwer", "firsName1", "lastName1", LocalDate.now(), passwordEncoder.encode("qwer"));
+        User admin = new User("qwer@qwer.qwer", "firsName1", "lastName1", 34, passwordEncoder.encode("qwer"));
         admin.addRole(roleService.add(roleAdmin));
         userService.add(admin);
 
-        User user = new User("asdf", "firsName2", "lustName2", LocalDate.now(), passwordEncoder.encode("asdf"));
+        User user = new User("asdf@asdf.asdf", "firsName2", "lustName2", 23, passwordEncoder.encode("asdf"));
         user.addRole(roleService.add(roleUser));
         userService.add(user);
 
-        User userAdmin = new User("zxcv", "firsName3", "lustName3", LocalDate.now(), passwordEncoder.encode("zxcv"));
+        User userAdmin = new User("zxcv@zxcv.zxcv", "firsName3", "lustName3", 45, passwordEncoder.encode("zxcv"));
         userAdmin.addRole(roleService.add(roleUser));
         userAdmin.addRole(roleService.add(roleAdmin));
         userService.add(userAdmin);

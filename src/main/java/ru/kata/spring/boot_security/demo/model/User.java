@@ -1,12 +1,13 @@
 package ru.kata.spring.boot_security.demo.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 
 @Entity
@@ -17,15 +18,15 @@ public class User implements UserDetails {
     private Long id;
 
     @Column(unique = true, nullable = false)
-    private String userName;
+    private String email;
 
     private String firstName;
 
     private String lastName;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate birthDate;
+    private Integer age;
 
+    @Column(nullable = false)
     private String password;
 
     @ManyToMany
@@ -37,11 +38,11 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String userName, String firstName, String lastName, LocalDate birthDate, String password) {
-        this.userName = userName;
+    public User(String email, String firstName, String lastName, Integer age, String password) {
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.birthDate = birthDate;
+        this.age = age;
         this.password = password;
     }
 
@@ -52,7 +53,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userName;
+        return email;
     }
 
     @Override
@@ -80,22 +81,22 @@ public class User implements UserDetails {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(userName, user.userName);
+        return Objects.equals(email, user.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userName);
+        return Objects.hash(email);
     }
 
     @Override
     public String toString() {
         return "User{" +
                "id=" + id +
-               ", userName='" + userName + '\'' +
+               ", email='" + email + '\'' +
                ", firstName='" + firstName + '\'' +
                ", lastName='" + lastName + '\'' +
-               ", birthDate=" + birthDate +
+               ", age=" + age +
                '}';
     }
 
@@ -115,12 +116,12 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setEmail(String userName) {
+        this.email = userName;
     }
 
     public String getFirstName() {
@@ -139,12 +140,12 @@ public class User implements UserDetails {
         this.lastName = lastName;
     }
 
-    public LocalDate getBirthDate() {
-        return birthDate;
+    public Integer getAge() {
+        return age;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
+    public void setAge(Integer birthDate) {
+        this.age = birthDate;
     }
 
     public String getPassword() {
